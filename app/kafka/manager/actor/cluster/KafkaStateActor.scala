@@ -1392,7 +1392,7 @@ class KafkaStateActor(config: KafkaStateActorConfig) extends BaseClusterQueryCom
                     }
 
                     val tpList = broker2TopicPartitionMap(broker)
-                    val port: Int = broker.endpoints(SSL)
+                    val port: Int = broker.endpoints.values.head
                     val consumerProperties = kaConfig.consumerProperties.getOrElse(getDefaultConsumerProperties(s"${broker.host}:$port"))
                     val kafkaConsumer = new KafkaConsumer(consumerProperties)
                     try {
